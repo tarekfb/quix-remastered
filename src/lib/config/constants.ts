@@ -1,8 +1,8 @@
 import { dev } from '$app/environment';
-export const BASE_URL = dev ? 'http://localhost:5173' : 'https://quix-remastered.vercel.app';
-export const APP_NAME = 'Quix Remastered';
+export const BASE_URL = dev ? 'http://localhost:5173' : 'https://quix.vercel.app';
+export const APP_NAME = 'Quix';
 export const CONTACT_EMAIL = 'yourname@email.com';
-export const DOMAIN = 'quix-remastered.vercel.app';
+export const DOMAIN = 'quix.vercel.app';
 /* WARNING!!! TERMS AND CONDITIONS AND PRIVACY POLICY 
 WERE CREATED BY CHATGPT AS AN EXAMPLE ONLY. 
 CONSULT A LAWYER AND DEVELOP YOUR OWN TERMS AND PRIVACY POLICY!!! */

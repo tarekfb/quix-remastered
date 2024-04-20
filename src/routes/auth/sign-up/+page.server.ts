@@ -6,7 +6,7 @@ import { lucia } from '$lib/server/lucia';
 import { createUser } from '$lib/server/database/user-model';
 
 import { userSchema } from '$lib/config/zod-schemas';
-import { sendVerificationEmail } from '$lib/config/email-messages';
+// import { sendVerificationEmail } from '$lib/config/email-messages';
 
 const signUpSchema = userSchema.pick({
 	firstName: true,
@@ -56,7 +56,7 @@ export const actions = {
 			};
 			const newUser = await createUser(user);
 			if (newUser) {
-				await sendVerificationEmail(newUser.email, token);
+				// await sendVerificationEmail(newUser.email, token);  // TODO: reactivate when email is live
 				const session = await lucia.createSession(newUser.id, {});
 				const sessionCookie = lucia.createSessionCookie(session.id);
 				event.cookies.set(sessionCookie.name, sessionCookie.value, {

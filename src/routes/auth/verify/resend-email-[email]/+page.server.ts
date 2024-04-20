@@ -1,5 +1,5 @@
 import { fail } from '@sveltejs/kit';
-import { sendVerificationEmail } from '$lib/config/email-messages';
+// import { sendVerificationEmail } from '$lib/config/email-messages';
 import { getUserByEmail, updateUser } from '$lib/server/database/user-model';
 
 export async function load({ params }) {
@@ -17,7 +17,7 @@ export async function load({ params }) {
 				'A new verification email was sent.  Please check your email for the message. (Check the spam folder if it is not in your inbox)';
 			await updateUser(user.id, { verified: false });
 			if (user.token) {
-				sendVerificationEmail(user.email, user.token);
+				// sendVerificationEmail(user.email, user.token);  // TODO: reactivate when email is live
 			}
 		}
 		return { heading: heading, message: message };

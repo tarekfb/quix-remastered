@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 import { getUserByEmail, createUser } from '$lib/server/database/user-model.js';
 import { googleOauth, lucia } from '$lib/server/lucia';
 import { OAuth2RequestError } from 'arctic';
-import { sendVerificationEmail } from '$lib/config/email-messages';
+// import { sendVerificationEmail } from '$lib/config/email-messages';
 import { setFlash } from 'sveltekit-flash-message/server';
 //import type { RequestEvent } from '@sveltejs/kit';
 
@@ -65,7 +65,7 @@ export async function load(event) {
 			};
 			const newUser = await createUser(newGoogleUser);
 			if (newUser) {
-				await sendVerificationEmail(newUser.email, token);
+				// await sendVerificationEmail(newUser.email, token);  // TODO: reactivate when email is live
 				const session = await lucia.createSession(newUser.id, {});
 				const sessionCookie = lucia.createSessionCookie(session.id);
 				event.cookies.set(sessionCookie.name, sessionCookie.value, {

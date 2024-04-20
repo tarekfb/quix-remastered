@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { setError, superValidate, message } from 'sveltekit-superforms/server';
 import { setFlash } from 'sveltekit-flash-message/server';
 import { userSchema } from '$lib/config/zod-schemas';
-import { updateEmailAddressSuccessEmail } from '$lib/config/email-messages';
+// import { updateEmailAddressSuccessEmail } from '$lib/config/email-messages';
 import { updateUser } from '$lib/server/database/user-model.js';
 
 const profileSchema = userSchema.pick({
@@ -60,7 +60,7 @@ export const actions = {
 					await updateUser(user?.userId, {
 						verified: false
 					});
-					await updateEmailAddressSuccessEmail(form.data.email, user?.email, user?.token);
+					// await updateEmailAddressSuccessEmail(form.data.email, user?.email, user?.token); // TODO: reactivate when email is live
 				}
 			}
 		} catch (e) {
