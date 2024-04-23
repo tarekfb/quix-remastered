@@ -4,9 +4,10 @@
 	import { Loader2 } from 'lucide-svelte';
 	import { AlertCircle } from 'lucide-svelte';
 	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
 
-	import type { PageData } from './$types.js';
-	export let data: PageData;
+	export let form;
 </script>
 
 <svelte:head>
@@ -23,21 +24,15 @@
 				{APP_NAME}
 			</h1>
 			<h2 class="text-xl md:text-2xl text-muted-foreground">Quickly index IMDB</h2>
-			<form method="POST" use:enhance>
-				<label for="title">Title</label>
-				<input type="text" name="name" />
-				<button>Submit</button>
+			<form method="POST" use:enhance class="flex w-full max-w-sm items-center space-x-2">
+				<Input type="text" name="title" placeholder="Enter movie title" />
+				<Button type="submit">Search</Button>
 			</form>
 		</section>
 
 		<section>
-			<!-- here im hoping to use forms.movies, but typescript indicates there is no field called forms.movies -->
-			<!-- {#if form.}
-				{#each form.movies as movie }
-					
-				{/each}
-			{/if}					 -->
-			<!-- {form?.} -->
+			{form?.films[0].Title}
+			
 		</section>
 	</main>
 </div>
