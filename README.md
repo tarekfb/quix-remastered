@@ -1,3 +1,3 @@
 # Quix Remastered
-## Starter template from auth-svelte
+## Starter template from sveltekit-auth
 https://github.com/delay/sveltekit-auth

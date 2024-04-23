@@ -72,6 +72,7 @@
 							<DropdownMenu.Item on:click={() => resetMode()}>System</DropdownMenu.Item>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>
+					
 				{:else}
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger asChild let:builder>
