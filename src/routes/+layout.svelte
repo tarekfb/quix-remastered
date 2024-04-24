@@ -29,9 +29,21 @@
 
 <ModeWatcher />
 <Toaster richColors />
-<div class="relative flex min-h-screen flex-col">
+<div class="relative flex min-h-screen flex-col main-container">
 	<Navigation {user} />
 	<div class="mt-8 md:mt-12">
 		<slot />
 	</div>
 </div>
+
+<style lang="pcss">
+	.main-container {
+		background: var(--color-background-main);
+		background: linear-gradient(
+			180deg,
+			var(--color-background-secondary) 59%,
+			var(--color-background-main) 84%
+		);
+	}
+</style>
+

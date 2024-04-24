@@ -31,7 +31,7 @@
 	}
 </script>
 
-<header class="bg-background sticky top-0 z-40 w-full border-b">
+<header class="sticky top-0 z-40 w-full bg-colorBackgroundSecondary">
 	<div class="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 		<div class="flex gap-6 md:gap-10">
 			<a class="flex items-center space-x-2" href="/"
