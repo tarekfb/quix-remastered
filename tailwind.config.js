@@ -47,6 +47,34 @@ const config = {
 				card: {
 					DEFAULT: "hsl(var(--card) / <alpha-value>)",
 					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
+				},
+				colorBackgroundMain: {
+					DEFAULT: "var(--color-background-main)",
+					foreground: "var(--color-background-main-foreground)"
+				},
+				colorBackgroundSecondary: {
+					DEFAULT: "var(--color-background-secondary)",
+					foreground: "var(--color-background-secondary-foreground)"
+				},
+				colorBackgroundThird: {
+					DEFAULT: "var(--color-background-third)",
+					foreground: "var(--color-background-third-foreground)"
+				},
+				colorBackgroundGrey: {
+					DEFAULT: "var(--color-background-grey)",
+					foreground: "var(--color-background-grey-foreground)"
+				},
+				colorAccentMain: {
+					DEFAULT: "var(--color-accent-main)",
+					foreground: "var(--color-accent-main-foreground)"
+				},
+				colorAccentSecondary: {
+					DEFAULT: "var(--color-accent-secondary)",
+					foreground: "var(--color-accent-secondary-foreground)"
+				},
+				colorAccentWhiteblack: {
+					DEFAULT: "var(--color-accent-whiteblack)",
+					foreground: "var(--color-accent-whiteblack-foreground)"
 				}
 			},
 			borderRadius: {

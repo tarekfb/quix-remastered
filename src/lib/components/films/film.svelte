@@ -7,7 +7,7 @@
 	export let film: FilmFull;
 </script>
 
-<div class="flex justify-between h-32 w-full md:w-4/5 bg-accent gap-x-2 overflow-hidden">
+<div class="flex justify-between h-32 w-full md:w-4/5 bg-accent gap-x-2 overflow-hidden rounded-md bg-colorBackground">
 	<img
 		src={film.Poster == 'N/A' ? missing : film.Poster}
 		alt={film.Title}
