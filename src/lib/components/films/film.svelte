@@ -3,6 +3,12 @@
 	import { Star } from 'lucide-svelte';
 	import { Heart } from 'lucide-svelte';
 	import missing from '$lib/assets/missing.jpg';
+	import { saveFilm } from '$lib/server/database/films/films';
+	
+	const saveFilmWrapper = (film: FilmFull) => {
+		const response = await saveFilm(film);
+		console.log(response);
+	};
 
 	export let film: FilmFull;
 </script>
@@ -24,6 +30,8 @@
 				>{film.imdbRating}</span
 			>
 		</div>
-		<Heart class="text-red-300" />
+		<button class="p-1" on:click={() => saveFilmWrapper(film)}>
+			<Heart class="text-red-400" size={30} />
+		</button>
 	</div>
 </div>

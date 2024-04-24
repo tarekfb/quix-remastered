@@ -33,6 +33,16 @@ export const sessionTable = pgTable('sessions', {
 	}).notNull()
 });
 
+export const filmsTable = pgTable('films', {
+	imdbId: text('id').notNull().primaryKey(),
+	title: text('title')
+		.notNull()
+		.references(() => userTable.id),
+	expiresAt: timestamp('expires_at', {
+		withTimezone: true,
+		mode: 'date'
+	}).notNull()
+});
 export type User = typeof userTable.$inferInsert;
 export type UpdateUser = Partial<typeof userTable.$inferInsert>;
 export type Session = typeof sessionTable.$inferInsert;
