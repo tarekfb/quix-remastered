@@ -53,4 +53,17 @@ export const userUpdatePasswordSchema = userSchema
 		}
 	});
 
-	export type UserUpdatePasswordSchema = typeof userUpdatePasswordSchema;
+export type UserUpdatePasswordSchema = typeof userUpdatePasswordSchema;
+
+export const searchSchema = z.object({
+	Title: z
+		.string({ required_error: 'Title is required' })
+		.min(1, { message: 'Title is required' })
+		.trim(),
+	Year: z.string().optional(),
+	imdbID: z.string(),
+	Type: z.string().optional(),
+	Poster: z.string().optional(),
+});
+
+export type SearchSchema = typeof searchSchema;
