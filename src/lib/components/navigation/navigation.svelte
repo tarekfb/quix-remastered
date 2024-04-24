@@ -40,11 +40,6 @@
 			<nav class="flex gap-6">
 				<a
 					class="flex items-center text-sm font-medium text-muted-foreground"
-					href="/"
-					class:active={'/' === currentPage}>Home</a
-				>
-				<a
-					class="flex items-center text-sm font-medium text-muted-foreground"
 					href="/dashboard"
 					class:active={'/dashboard' === currentPage}>Protected</a
 				>
@@ -72,7 +67,6 @@
 							<DropdownMenu.Item on:click={() => resetMode()}>System</DropdownMenu.Item>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>
-					
 				{:else}
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger asChild let:builder>
