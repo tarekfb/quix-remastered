@@ -40,7 +40,7 @@
 		<section class="flex flex-col items-center gap-y-4">
 			{#if form?.films}
 				{#each form.films as film}
-					<Film {film} />
+					<Film {film} {user} />
 				{/each}
 			{/if}
 		</section>

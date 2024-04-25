@@ -46,7 +46,7 @@ export const savedTable = pgTable('saved', {
 	createdAt: timestamp('created_at', {
 		withTimezone: true,
 		mode: 'date'
-	}).notNull()
+	})
 });
 export type User = typeof userTable.$inferInsert;
 export type UpdateUser = Partial<typeof userTable.$inferInsert>;

@@ -8,7 +8,7 @@ export type FilmShort = {
 	Actors?: string;
 };
 
-export type FilmFull = {
+export type FilmOmdb = {
 	Title: string;
 	Year?: number;
 	Rated?: string;
@@ -34,4 +34,32 @@ export type FilmFull = {
 	Production?: string;
 	Website?: string;
 	Response?: string;
+};
+
+export type FilmFull = {
+	title: string;
+	year?: number;
+	rated?: string;
+	released?: string;
+	runtime?: string;
+	genre?: string;
+	director?: string;
+	writer?: string;
+	actors?: string;
+	plot?: string;
+	language?: string;
+	country?: string;
+	awards?: string;
+	poster?: string;
+	ratings?: { Source: string; Value: string }[];
+	metascore?: string;
+	imdbRating?: string;
+	imdbVotes?: string;
+	imdbId: string;
+	type?: string;
+	dvd?: string;
+	boxOffice?: string;
+	production?: string;
+	website?: string;
+	response?: string;
 };
