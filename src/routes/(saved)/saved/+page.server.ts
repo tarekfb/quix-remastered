@@ -9,5 +9,8 @@ export const load = async (event) => {
 	if (!user) {
 		redirect(302, '/auth/sign-in');
 	}
+
+	
+
 	return user;
 };

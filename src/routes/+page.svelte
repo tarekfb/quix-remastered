@@ -8,8 +8,12 @@
 	import popcorn from '$lib/assets/popcorn.png';
 	import inverted from '$lib/assets/popcorn-inverted.png';
 	import { mode } from 'mode-watcher';
+	import type { PageData } from './$types';
 
 	export let form;
+	export let data: any;
+	let user: PageData['user'];
+	$: user = data.user;
 </script>
 
 <svelte:head>

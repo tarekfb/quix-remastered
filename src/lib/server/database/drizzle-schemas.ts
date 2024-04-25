@@ -33,6 +33,22 @@ export const sessionTable = pgTable('sessions', {
 	}).notNull()
 });
 
+export const savedTable = pgTable('saved', {
+	imdbId: text('imdb_id').notNull().primaryKey(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => userTable.id),
+	title: text('title'),
+	poster: text('poster'),
+	actors: text('actors'),
+	awards: text('awards'),
+	imdbRating: text('imdb_rating'),
+	createdAt: timestamp('created_at', {
+		withTimezone: true,
+		mode: 'date'
+	}).notNull()
+});
 export type User = typeof userTable.$inferInsert;
 export type UpdateUser = Partial<typeof userTable.$inferInsert>;
 export type Session = typeof sessionTable.$inferInsert;
+export type Saved = typeof savedTable.$inferInsert;

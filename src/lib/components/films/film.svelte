@@ -3,11 +3,35 @@
 	import { Star } from 'lucide-svelte';
 	import { Heart } from 'lucide-svelte';
 	import missing from '$lib/assets/missing.jpg';
+	import { toast } from 'svelte-sonner';
+
+	export let user: any = null;
+	let saved = '';
+
+	const saveFilm = async (imdbId: string) => {
+		if (!user) {
+			toast.error('Not logged in.');
+		} else {
+			console.log(user);
+			const response = await fetch('/api/saved', {
+				method: 'POST',
+				body: JSON.stringify({ imdbId, userId: user.id }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			});
+			
+			saved = await response.json();
+			console.log(saved);
+		}
+	};
 
 	export let film: FilmFull;
 </script>
 
-<div class="flex justify-between h-32 w-full md:w-4/5 bg-accent gap-x-2 overflow-hidden rounded-md bg-colorBackground">
+<div
+	class="flex justify-between h-32 w-full md:w-4/5 bg-accent gap-x-2 overflow-hidden rounded-md bg-colorBackground"
+>
 	<img
 		src={film.Poster == 'N/A' ? missing : film.Poster}
 		alt={film.Title}
@@ -24,6 +48,8 @@
 				>{film.imdbRating}</span
 			>
 		</div>
-		<Heart class="text-red-300" />
+		<button aria-label="Save film" class="p-1" on:click={() => saveFilm(film.imdbID)}>
+			<Heart class="text-red-400" size={30} />
+		</button>
 	</div>
 </div>
