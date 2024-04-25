@@ -5,7 +5,7 @@ import { googleOauth } from '$lib/server/lucia';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const load = async (event) => {
 	if (event.locals.user) {
-		redirect(302, '/dashboard');
+		redirect(302, '/saved');
 	}
 
 	const state = generateState();
