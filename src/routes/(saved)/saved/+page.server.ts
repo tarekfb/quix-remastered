@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+
 export const load = async (event) => {
 	//I only have this function here so it will check page again
 	//instead of keeping it cache if it was client side only.
@@ -9,5 +10,6 @@ export const load = async (event) => {
 	if (!user) {
 		redirect(302, '/auth/sign-in');
 	}
+
 	return user;
 };

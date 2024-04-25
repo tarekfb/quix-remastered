@@ -19,7 +19,7 @@ type GoogleUser = {
 
 export async function load(event) {
 	if (event.locals.user) {
-		redirect(302, '/dashboard');
+		redirect(302, '/saved');
 	}
 	const code = event.url.searchParams.get('code');
 	const state = event.url.searchParams.get('state');
@@ -81,7 +81,7 @@ export async function load(event) {
 				);
 			}
 		}
-		return redirect(302, '/dashboard');
+		return redirect(302, '/saved');
 	} catch (e) {
 		if (e instanceof OAuth2RequestError && e.message === 'bad_verification_code') {
 			// invalid code

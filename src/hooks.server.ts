@@ -50,7 +50,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.user = user;
 	event.locals.session = session;
 
-	if (event.route.id?.startsWith('/(protected)')) {
+	if (event.route.id?.startsWith('/(saved)')) {
 		if (!user) redirect(302, '/auth/sign-in');
 		if (!user.verified) redirect(302, '/auth/verify/email');
 	}

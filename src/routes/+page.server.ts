@@ -5,6 +5,9 @@ import { setFlash } from 'sveltekit-flash-message/server';
 import { cleanString } from '$lib/_helpers/cleanString.js';
 import { OMDB_APIKEY } from '$env/static/private';
 import type { FilmShort } from '$lib/types';
+import type { RequestEvent } from '@sveltejs/kit';
+import type { RouteParams } from './$types';
+import { fetchFilmByImdbId } from '$lib/_helpers/films';
 
 // const titleSchema = searchSchema.pick({
 // 	Title: true,
@@ -19,43 +22,36 @@ import type { FilmShort } from '$lib/types';
 
 // https://kit.svelte.dev/docs/form-actions
 
-const fetchFullMovie = async (imdbID: string) => {
-	const url = `https://www.omdbapi.com/?&apikey=${OMDB_APIKEY}&i=${imdbID}`;
+
+
+const fetchFilmByTitle = async (title: string, event: RequestEvent<RouteParams, '/'>) => {
+	const url = `https://www.omdbapi.com/?&apikey=${OMDB_APIKEY}&s=${title}`;
 	const res = await fetch(url);
-	const data = await res.json();
+	if (!res.ok) {
+		console.error(res);
+		setFlash({ type: 'error', message: 'Something went wrong while searching.' }, event);
+	}
+	const data = (await res.json()) as { Search: FilmShort[] };
+	if (!data) {
+		console.error(data);
+		setFlash({ type: 'error', message: 'Something went wrong while searching.' }, event);
+	}
 	return data;
 };
 
 export const actions = {
 	default: async (event) => {
-		// const searchMovieSchema = searchSchema.pick({ Title: true });
 
 		const form = await event.request.formData();
-		// if (!form.valid) {
-		// 	return fail(400, {
-		// 		form
-		// 	});
-		// }
 
 		try {
 			const queryText = cleanString(form.get('title') as string);
-			const url = `https://www.omdbapi.com/?&apikey=${OMDB_APIKEY}&s=${queryText}`;
-			const res = await fetch(url);
-			if (!res.ok) {
-				console.error(res);
-				setFlash({ type: 'error', message: 'Something went wrong while searching.' }, event);
-			}
-			const data = await res.json();
-			if (!data) {
-				console.error(data);
-				setFlash({ type: 'error', message: 'Something went wrong while searching.' }, event);
-			}
-
-			const films = data.Search as FilmShort[];
+			const filmsShort = await fetchFilmByTitle(queryText, event);
+			const films = filmsShort.Search;
 
 			const filmsFull = await Promise.all(
 				films.map(async (film) => {
-					const filmFull = await fetchFullMovie(film.imdbID);
+					const filmFull = await fetchFilmByImdbId(film.imdbID);
 					return filmFull;
 				})
 			);
