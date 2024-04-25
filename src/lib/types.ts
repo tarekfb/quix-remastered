@@ -63,3 +63,14 @@ export type FilmFull = {
 	website?: string;
 	response?: string;
 };
+
+export type Saved = {
+	imdbId: string;
+	userId: string;
+	createdAt?: Date;
+	title?: string;
+	poster?: string;
+	actors?: string;
+	awards?: string;
+	imdbRating?: string;
+};
