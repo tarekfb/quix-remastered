@@ -37,16 +37,17 @@ export const savedTable = pgTable('saved', {
 	imdbId: text('imdb_id').notNull().primaryKey(),
 	userId: text('user_id')
 		.notNull()
+		.notNull()
 		.references(() => userTable.id),
-	title: text('title'),
-	poster: text('poster'),
-	actors: text('actors'),
-	awards: text('awards'),
-	imdbRating: text('imdb_rating'),
+	title: text('title').notNull(),
+	poster: text('poster').notNull(),
+	actors: text('actors').notNull(),
+	awards: text('awards').notNull(),
+	imdbRating: text('imdb_rating').notNull(),
 	createdAt: timestamp('created_at', {
 		withTimezone: true,
 		mode: 'date'
-	})
+	}).notNull()
 });
 export type User = typeof userTable.$inferInsert;
 export type UpdateUser = Partial<typeof userTable.$inferInsert>;

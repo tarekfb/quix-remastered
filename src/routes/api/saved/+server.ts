@@ -1,15 +1,8 @@
 import { error } from '@sveltejs/kit';
 import db from '$lib/server/database/drizzle';
 import { savedTable, type Saved } from '../../../lib/server/database/drizzle-schemas';
-import { OMDB_APIKEY } from '$env/static/private';
 import { and, eq } from 'drizzle-orm';
-
-const fetchFullMovie = async (imdbID: string) => {
-	const url = `https://www.omdbapi.com/?&apikey=${OMDB_APIKEY}&i=${imdbID}`;
-	const res = await fetch(url);
-	const data = await res.json();
-	return data;
-};
+import { fetchFilmByImdbId } from '$lib/_helpers/films';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
@@ -20,15 +13,15 @@ export async function POST({ request }) {
 		error(400, `Missing value.`);
 	}
 	try {
-		const { imdbID, Title, Poster, Actors, Awards, imdbRating } = await fetchFullMovie(imdbId);
+		const { title, poster, actors, awards, imdbRating } = await fetchFilmByImdbId(imdbId);
 
 		const dbFilm: Saved = {
-			imdbId: imdbID,
+			imdbId,
 			userId,
-			title: Title,
-			poster: Poster,
-			actors: Actors,
-			awards: Awards,
+			title,
+			poster,
+			actors,
+			awards,
 			imdbRating,
 			createdAt: new Date()
 		};
