@@ -9,14 +9,13 @@
 	import { toast } from 'svelte-sonner';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
-	export let data: any;
-	let user: PageData['user'];
-	let savedFilms: Saved[];
-	$: user = data.user;
-	$: savedFilms = data.savedFilms;
-	let title = '';
-	let searchedFilms: Saved[] = [];
+	const isValidParam = (param: string | null) => {
+		if (param?.match(/^(?=.*[a-zA-Z]).{2,}$/)) return param;
+		else return undefined;
+	};
 
 	const findUserId = (imdbId: string): string | undefined => {
 		if (!savedFilms) return undefined;
@@ -51,6 +50,21 @@
 
 		searchedFilms = films;
 	};
+
+	export let data: any;
+	let user: PageData['user'];
+	let savedFilms: Saved[];
+	$: user = data.user;
+	$: savedFilms = data.savedFilms;
+	let searchedFilms: Saved[] = [];
+
+	const param = isValidParam($page.url.searchParams.get('title'));
+
+	let title = param ? param : '';
+
+	onMount(() => {
+		if (title) getFilmsFromImdb();
+	});
 </script>
 
 <svelte:head>
